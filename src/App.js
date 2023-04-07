@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import AppBar from "./components/AppBar";
+import { Route, Routes, Navigate } from "react-router-dom";
+import routes from "./config/routes";
+import HomePage from "./pages/HomePage";
+import MoviesPage from "./pages/MoviesPage";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
+import Cast from "./components/Cast";
+import Review from "./components/Review";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path={routes.home} element={<AppBar />}>
+          <Route index element={<HomePage />} />
+          <Route path={routes.movies} element={<MoviesPage />} />
+          <Route path={routes.movieDetails} element={<MovieDetailsPage />}>
+            <Route path={routes.movieCast} element={<Cast />} />
+            <Route path={routes.movieReview} element={<Review />} />
+          </Route>
+          <Route path="*" element={<Navigate to={routes.home} replace />} />
+        </Route>
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;
