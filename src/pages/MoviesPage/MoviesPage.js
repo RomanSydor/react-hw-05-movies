@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import tmdbApi from "../../services/TMDB-api";
-import MovieListItem from "../../components/MovieListItem";
+import MovieList from "../../components/MovieList";
+import SearchMovieForm from "../../components/SearchMovieForm";
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,14 +31,8 @@ const MoviesPage = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="query" autoComplete="off"></input>
-        <button type="submit">Search</button>
-      </form>
-      <div>
-        {movies &&
-          movies.map((movie) => <MovieListItem key={movie.id} movie={movie} />)}
-      </div>
+      <SearchMovieForm submit={handleSubmit} />
+      <MovieList movies={movies} />
     </>
   );
 };

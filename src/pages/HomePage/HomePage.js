@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import MovieList from "../../components/MovieList";
 import tmdbApi from "../../services/TMDB-api";
-import MovieListItem from "../../components/MovieListItem";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -12,12 +12,7 @@ const HomePage = () => {
       .catch((err) => console.log(err.message));
   }, []);
 
-  return (
-    <div>
-      {movies &&
-        movies.map((movie) => <MovieListItem key={movie.id} movie={movie} />)}
-    </div>
-  );
+  return <MovieList movies={movies} />;
 };
 
 export default HomePage;
