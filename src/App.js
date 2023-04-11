@@ -2,15 +2,17 @@ import "./App.css";
 import AppBar from "./components/AppBar";
 import { Route, Routes, Navigate } from "react-router-dom";
 import routes from "./config/routes";
-import HomePage from "./pages/HomePage";
-import MoviesPage from "./pages/MoviesPage";
-import MovieDetailsPage from "./pages/MovieDetailsPage";
-import Cast from "./components/Cast";
-import Review from "./components/Review";
+import { lazy, Suspense } from "react";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage"));
+const MovieDetailsPage = lazy(() => import("./pages/MovieDetailsPage"));
+const Cast = lazy(() => import("./components/Cast"));
+const Review = lazy(() => import("./components/Review"));
 
 const App = () => {
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path={routes.home} element={<AppBar />}>
           <Route index element={<HomePage />} />
@@ -22,7 +24,7 @@ const App = () => {
           <Route path="*" element={<Navigate to={routes.home} replace />} />
         </Route>
       </Routes>
-    </>
+    </Suspense>
   );
 };
 
