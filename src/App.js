@@ -12,7 +12,7 @@ const Review = lazy(() => import("./components/Review"));
 
 const App = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div className="loader">Loading...</div>}>
       <Routes>
         <Route path={routes.home} element={<AppBar />}>
           <Route index element={<HomePage />} />
