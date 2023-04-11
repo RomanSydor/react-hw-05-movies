@@ -12,19 +12,59 @@ const Review = lazy(() => import("./components/Review"));
 
 const App = () => {
   return (
-    <Suspense fallback={<div className="loader">Loading...</div>}>
-      <Routes>
-        <Route path={routes.home} element={<AppBar />}>
-          <Route index element={<HomePage />} />
-          <Route path={routes.movies} element={<MoviesPage />} />
-          <Route path={routes.movieDetails} element={<MovieDetailsPage />}>
-            <Route path={routes.movieCast} element={<Cast />} />
-            <Route path={routes.movieReview} element={<Review />} />
-          </Route>
-          <Route path="*" element={<Navigate to={routes.home} replace />} />
+    <Routes>
+      <Route path={routes.home} element={<AppBar />}>
+        <Route
+          index
+          element={
+            <Suspense fallback={<div className="loader">Loading...</div>}>
+              <HomePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path={routes.movies}
+          element={
+            <Suspense fallback={<div className="loader">Loading...</div>}>
+              <MoviesPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path={routes.movieDetails}
+          element={
+            <Suspense fallback={<div className="loader">Loading...</div>}>
+              <MovieDetailsPage />
+            </Suspense>
+          }
+        >
+          <Route
+            path={routes.movieCast}
+            element={
+              <Suspense fallback={<div className="loader">Loading...</div>}>
+                <Cast />
+              </Suspense>
+            }
+          />
+          <Route
+            path={routes.movieReview}
+            element={
+              <Suspense fallback={<div className="loader">Loading...</div>}>
+                <Review />
+              </Suspense>
+            }
+          />
         </Route>
-      </Routes>
-    </Suspense>
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<div className="loader">Loading...</div>}>
+              <Navigate to={routes.home} replace />
+            </Suspense>
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 
