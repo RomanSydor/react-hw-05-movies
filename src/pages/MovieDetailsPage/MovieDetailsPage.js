@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { NavLink, useParams, useLocation, Outlet } from "react-router-dom";
+import { useParams, useLocation, Outlet } from "react-router-dom";
 import tmdbApi from "../../services/TMDB-api";
-import routes from "../../config/routes";
 import GoBackButton from "../../components/GoBackButton";
 import MovieDetails from "../../components/MovieDetails";
+import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
-  const prevLocation = location.state?.from;
   const backLinkHref = location.state?.from ?? "/";
 
   useEffect(() => {
@@ -21,21 +20,15 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <GoBackButton link={backLinkHref} />
+      <div className={s.backBtnContainer}>
+        <GoBackButton link={backLinkHref} />
+      </div>
       {movie && (
-        <div>
+        <>
           <MovieDetails movie={movie} />
-          <hr />
-          <NavLink to={routes.movieCast} state={{ from: prevLocation }}>
-            CAST
-          </NavLink>
-          <br />
-          <NavLink to={routes.movieReview} state={{ from: prevLocation }}>
-            Review
-          </NavLink>
 
           <Outlet />
-        </div>
+        </>
       )}
     </>
   );

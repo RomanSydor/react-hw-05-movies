@@ -1,14 +1,18 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Container from "../Container";
 import Navigation from "../Navigation";
+import s from "./AppBar.module.css";
 
 const AppBar = () => {
   return (
     <>
-      <header className="AppBar">
+      <header className={s.AppBar}>
         <Navigation />
       </header>
-      <Outlet />
+      <Container>
+        <Outlet />
+      </Container>
     </>
   );
 };

@@ -1,0 +1,52 @@
+.title{
+    padding: 20px 0px 5px 0px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.castContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.castItem{
+    box-shadow: 7px 7px 10px rgb(40, 54, 97);
+    border-radius: 10px;
+    margin: 25px;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+.imgContainer{
+    height: 420px;
+    width: 300px;
+}
+
+.actorImg{
+    height: 100%;
+    object-fit: cover;
+}
+
+.castText{
+    margin: 10px;
+    font-weight: bold;
+    color: rgb(40, 54, 97);
+}
+
+.name{
+    color: rgb(72, 72, 72);
+}
+
+@media (min-width: 768px) {
+    .castContainer{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .title{
+        font-size: 26px;
+    }
+}

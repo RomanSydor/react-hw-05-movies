@@ -1,0 +1,13 @@
+.goBackBtn{
+    width: 80px;
+    min-height: 40px;
+    border-radius: 10px;
+    background-color: rgb(40, 54, 97);
+    color: rgb(202, 255, 43);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
